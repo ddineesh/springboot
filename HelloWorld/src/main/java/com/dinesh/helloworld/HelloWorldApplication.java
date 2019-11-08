@@ -24,6 +24,13 @@ public class HelloWorldApplication {
 		return "Hello Have Good one!!!!";
 	}
 	
+	@RequestMapping("/greetMorning")
+	@ResponseBody
+	String greetMorning()
+	{
+		return "Hello Good Mornings!!!!!";
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(HelloWorldApplication.class, args);
 	}
