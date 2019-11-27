@@ -6,9 +6,9 @@ import javax.validation.constraints.Size;
 public class Posts {
 
 	Integer postId;
-	@Size(min=5)
+	@Size(min=5,message="Post Mesage should be minimum of 5 char")
 	String postMessage;
-	@NotNull
+	@NotNull(message=" Post can't be saved with out User id in request")
 	Integer userId;
 	public Posts() {
 		super();

@@ -2,6 +2,13 @@ package com.example.dinesh.user;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description=" Contains the user details")
 public class User {
 
 
@@ -19,7 +26,11 @@ public class User {
 	}
 
 	private Integer id;
+	@ApiModelProperty(notes=" User name should be minimum 3 characters")
+	@Size(min=3,message=" User name should be minimum 3 characters")
 	private String name;
+	@NotNull(message="User Date of birth should not be null")
+	@ApiModelProperty(notes=" Birth date cannot be in past")
 	private Date dateOfBirth;
 	public Integer getId() {
 		return id;
