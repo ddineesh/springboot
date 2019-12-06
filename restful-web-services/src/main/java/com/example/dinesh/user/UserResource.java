@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +21,8 @@ import com.example.dinesh.user.exception.PostsNotFoundException;
 import com.example.dinesh.user.exception.UserNotFoundException;
 import com.example.dinesh.user.exception.UserNotSavedException;
 
-/*import org.springframework.hateoas.*;
-import org.springframework.hateoas.server.mvc.ControllerLinkBuilder;
-
-import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.*;*/
+import org.springframework.hateoas.*;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 @RestController
 public class UserResource {
@@ -38,24 +38,25 @@ public class UserResource {
 
 	// Get one user{id}
 	@GetMapping("/users/{id}")
-	/*public EntityModel<User> retrieveUser(@PathVariable int id)*/ 
-	public User retrieveUser(@PathVariable int id){
+	public Resource<User> retrieveUser(@PathVariable int id){
+	/*public User retrieveUser(@PathVariable int id){*/
 		User user = userDaoService.findOne(id);
 		if (user == null) {
 			throw new UserNotFoundException("Id=" + id);
 		}
 
-		/*EntityModel<User> resource = new EntityModel<User>(user);
+		Resource<User> resource = new Resource<User>(user);
 
 		ControllerLinkBuilder linkTo = ControllerLinkBuilder.linkTo(methodOn(this.getClass()).retrieveAllUsers());
 
 		resource.add(linkTo.withRel("all-users"));
 		return resource;
-*/
-		return user;
+
+		/*return user;*/
 	}
 
 	@DeleteMapping("/users/{id}")
+	
 	public void deleteUserById(@PathVariable int id) {
 		User user = userDaoService.deleteUerById(id);
 		if (user == null) {
