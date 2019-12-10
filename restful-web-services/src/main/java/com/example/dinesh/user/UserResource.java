@@ -1,5 +1,7 @@
 package com.example.dinesh.user;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
 
@@ -20,9 +22,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.dinesh.user.exception.PostsNotFoundException;
 import com.example.dinesh.user.exception.UserNotFoundException;
 import com.example.dinesh.user.exception.UserNotSavedException;
-
-import org.springframework.hateoas.*;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 @RestController
 public class UserResource {

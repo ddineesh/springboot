@@ -10,6 +10,7 @@ public class SomeBean {
 	
 	String field1,field2;
 	
+	/*The below annotation can be used to static filtering*/
 	@JsonIgnore
 	String field3;
 
