@@ -2,18 +2,27 @@ package com.example.dinesh.jpa;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.dinesh.user.User;
 import com.example.dinesh.user.exception.UserNotFoundException;
+import com.example.dinesh.user.exception.UserNotSavedException;
 
 @RestController
 public class UserJPAResource {
@@ -43,4 +52,25 @@ public class UserJPAResource {
 		return resource;
 
 	}
+	
+	@DeleteMapping("/jpa/users/{id}")
+	public void deleteUserById(@PathVariable int id) {
+		userRepo.deleteById(id);
+		
+	}
+	
+	@PostMapping("/jpa/users")
+	public ResponseEntity<Object> createUser(@Valid @RequestBody UserTable user) {
+		if (null == user.getName()) {
+			throw new UserNotSavedException("Not Enough information to store user");
+		}
+		UserTable savedUser = userRepo.save(user);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+
+	}
+
+
+
 }

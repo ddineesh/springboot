@@ -1,0 +1,16 @@
+h2.memory connect string:
+
+jdbc:h2:mem:testdb
+
+spring actuator URL:
+
+http://localhost:8080/actuator
+
+swagger URL:
+
+http://localhost:8080/swagger-ui.html
+
+API Docs:
+
+http://localhost:8080/v2/api-docs
+

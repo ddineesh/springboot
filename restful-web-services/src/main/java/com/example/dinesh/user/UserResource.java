@@ -55,7 +55,6 @@ public class UserResource {
 	}
 
 	@DeleteMapping("/users/{id}")
-	
 	public void deleteUserById(@PathVariable int id) {
 		User user = userDaoService.deleteUerById(id);
 		if (user == null) {
