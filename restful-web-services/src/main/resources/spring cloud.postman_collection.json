@@ -1,0 +1,22 @@
+{
+	"info": {
+		"_postman_id": "02d4fbc3-8284-4848-a89a-2e3ced6fd74e",
+		"name": "spring cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/actuator/refresh",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "dfasd"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
